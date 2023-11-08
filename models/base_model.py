@@ -7,6 +7,7 @@ defines all common attributes/methods for other classes
 
 import uuid
 import datetime
+from models import storage
 
 class BaseModel():
         """ a class that defines all common attributes/methods
@@ -49,6 +50,8 @@ class BaseModel():
                 current_datetime = datetime.datetime.now()
                 self.created_at = current_datetime
                 self.updated_at = current_datetime
+                storage.new(self)
+
 
         def __str__(self) -> str:
                 """return string representation"""
@@ -60,6 +63,8 @@ class BaseModel():
                 `updated_at` with the current datetime
                 """
                 self.updated_at = datetime.datetime.now()
+                storage._FileStorage__objects[self.__class__.__name__ + "." + self.id] = self.to_dict()
+                storage.save()
 
         def to_dict(self):
                 """
