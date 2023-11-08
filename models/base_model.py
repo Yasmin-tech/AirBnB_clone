@@ -30,8 +30,21 @@ class BaseModel():
                 updates the public instance attribute
                 updated_at with the current datetime
         """
-        def __init__(self) -> None:
-                """ BaseModel object constructor"""
+        def __init__(self, *args, **kwargs) -> None:
+            """ BaseModel object constructor"""
+            if kwargs:
+                for key, value in kwargs.items():
+                    if key == "id":
+                        self.id = value
+                    elif key == "created_at":
+                        self.created_at = datetime.datetime.fromisoformat(value)
+                    elif key == "updated_at":
+                        self.updated_at = datetime.datetime.fromisoformat(value)
+                    elif key == "__class__":
+                        continue
+                    else:
+                        setattr(self, key, value)
+            else:
                 self.id = str(uuid.uuid4())
                 current_datetime = datetime.datetime.now()
                 self.created_at = current_datetime
