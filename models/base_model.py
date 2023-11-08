@@ -31,6 +31,7 @@ class BaseModel():
                 updated_at with the current datetime
         """
         def __init__(self, *args, **kwargs) -> None:
+            """ BaseModel object constructor"""
             if kwargs:
                 for key, value in kwargs.items():
                     if key == "id":
@@ -71,7 +72,7 @@ class BaseModel():
                 in ISO format:
                 %Y-%m-%dT%H:%M:%S.%f (ex: 2017-06-14T22:31:03.285259)
                 """
-                new_dict = self.__dict__
+                new_dict = self.__dict__.copy()
                 new_dict['__class__'] = self.__class__.__name__
                 new_dict['created_at'] = datetime.datetime.isoformat(self.created_at)
                 new_dict['updated_at'] = datetime.datetime.isoformat(self.updated_at)
