@@ -15,6 +15,8 @@ from models.amenity import Amenity
 from models.review import Review
 
 classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
+#classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
+
 class HBNBCommand(cmd.Cmd):
     """This class is a command intepreter"""
     prompt = "(hbnb) "
@@ -168,6 +170,23 @@ class HBNBCommand(cmd.Cmd):
                     
              else:
                  print("** class doesn't exist **")
+
+    def default(self, line: str) -> None:
+        args = line.split(".")
+        obj_count = 0
+        if args[0] in classes and len(args) == 2:
+            if args[1] == "all()":
+                self.do_all(args[0])
+            elif args[1] == "count()":
+                all_objs = storage.all()
+                for key in all_objs.keys():
+                    if args[0] in key:
+                        obj_count += 1
+                print(obj_count)
+        else:
+            cmd.Cmd.default(self, line)
+        
+        
 
         
 
