@@ -185,15 +185,6 @@ class HBNBCommand(cmd.Cmd):
                 print(obj_count)
         else:
             cmd.Cmd.default(self, line)
-        
-        
-
-        
-
-                     
-
-
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

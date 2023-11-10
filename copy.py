@@ -1,0 +1,133 @@
+#!/usr/bin/python3
+"""This module contain the class that is use for the console
+    i.e, the entry point for the command intepreter
+    """
+import cmd
+from models.base_model import BaseModel
+from models import storage
+import json
+import os
+
+class HBNBCommand(cmd.Cmd):
+    """This class is a command intepreter"""
+    prompt = "(hbnb) "
+    def do_quit(self, line):
+        """quit command to exit the program"""
+        return True
+
+    def do_EOF(self, line):
+        """quit command to exit the program"""
+        print()
+        return True
+
+    def emptyline(self, line):
+        """do nothing when the line is empty"""
+        pass
+    def do_create(self, line):
+        """create an instance of BaseModel"""
+        if not line:
+            print("** class name missing **")
+        else:
+            if line == "BaseModel":
+                b1 = BaseModel()
+                b1.save()
+                print(b1.id)
+            else:
+                print("** class doesn't exist **")
+
+    def do_show(self, line):
+        """print the string implementation of an instance based
+        on the class name and the id
+        """
+        if not line:
+            print("** class name missing **")
+            return
+        all_args = line.split()
+        if all_args[0] != "BaseModel":
+            print("** class doesn't exist **")
+            return
+        if len(all_args) < 2:
+            print("** instance id missing **")
+            return
+        all_obj = storage.all()
+        obj_dict = all_obj.get(all_args[0] + "." + all_args[1])
+        if obj_dict != None:
+            new_obj = BaseModel(**obj_dict)
+            print(new_obj)
+        else:
+            print("** no instance found **")
+
+    def do_destroy(self, line):
+        """delete an instance based on the class name and instance
+        and save the change into the json file
+        """
+        if not line:
+            print("** class name missing **")
+            return
+        all_args = line.split()
+        if all_args[0] != "BaseModel":
+            print("** class doesn't exist **")
+            return
+        if len(all_args) < 2:
+            print("** instance id missing **")
+            return
+        all_obj = storage.all()
+        obj_dict = all_obj.get(all_args[0] + "." + all_args[1])
+        if obj_dict != None:
+            del all_obj[all_args[0] + "." + all_args[1]]
+            with open("file.json", "w", encoding="utf-8") as f:
+                json.dump(all_obj, f)
+        else:
+            print("** no instance found **")
+
+    def do_all(self, line):
+        """ Prints all string representation of all instances
+        based or not on the class name
+        """
+        if line  and line != "BaseModel":
+            print("** class doesn't exist **")
+        else:
+            all_obj = storage.all()
+            keys = list(all_obj.keys())
+            print([str(BaseModel(**all_obj[key])) for key in keys])
+
+    def do_update(self, line):
+        """update an instance with an attribute"""
+        forbidden_attr = ["id", "created_at", "updated_at"]
+        allowed_type = [str, int, float]
+        if not line:
+            print("** class name missing **")
+            return
+        all_args = line.split()
+        if all_args[0] != "BaseModel":
+            print("** class doesn't exist **")
+            return
+        if len(all_args) < 2:
+            print("** instance id missing **")
+            return
+        all_obj = storage.all()
+        if all_obj.get(all_args[0] + "." + all_args[1]) == None:
+            print("* no instance found **")
+            return
+        if len(all_args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(all_args) < 4:
+            print("** value missing **")
+            return
+        if all_args[2] in forbidden_attr:
+            return
+        if type(eval(all_args[3])) not in allowed_type:
+            return
+        if type(eval(all_args[3])) == str:
+            all_args[3] = str(eval(all_args[3]))
+        elif type(eval(all_args[3])) == float:
+            all_args[3] = float(eval(all_args[3]))
+        else:
+            all_args[3] = int(eval(all_args[3]))
+        all_obj[all_args[0] + "." + all_args[1]][all_args[2]] = all_args[3]
+        with open("file.json", "w", encoding="utf-8") as f:
+            json.dump(all_obj, f)
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
