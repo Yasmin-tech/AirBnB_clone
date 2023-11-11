@@ -8,6 +8,7 @@ from models.base_model import BaseModel
 import unittest
 import datetime
 
+
 class Test_User(unittest.TestCase):
     """This class contains several methods to the
     the class <User>
@@ -94,13 +95,15 @@ class Test_User(unittest.TestCase):
         self.assertEqual(obj_dict["__class__"], "User")
         self.assertEqual(type(obj_dict["created_at"]), str)
         self.assertEqual(type(obj_dict["updated_at"]), str)
-        convert_isoformat = datetime.datetime.fromisoformat(obj_dict["created_at"])
+        convert_isoformat = datetime.datetime.fromisoformat(
+            obj_dict["created_at"])
         self.assertEqual(type(convert_isoformat), datetime.datetime)
-        convert_isoformat = datetime.datetime.fromisoformat(obj_dict["updated_at"])
+        convert_isoformat = datetime.datetime.fromisoformat(
+            obj_dict["updated_at"])
         self.assertEqual(type(convert_isoformat), datetime.datetime)
         self.assertEqual(u1.id, obj_dict["id"])
 
-#-------------------------------Unittest Task 4-------------------------------
+# ---------------------------Unittest Task 4-------------------------------
 
     def test_instantiation_with_kwargs(self):
         """ test creating an instance with kwargs.

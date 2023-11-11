@@ -9,8 +9,9 @@ import datetime
 
 class Test_Base_Model(unittest.TestCase):
     """This class contains several methods to test
-        the Base_Model class
-        """
+    the Base_Model class
+    """
+
     def test_create_instance(self):
         """confirm the instatiation of an instance"""
         b1 = BaseModel()
@@ -74,16 +75,18 @@ class Test_Base_Model(unittest.TestCase):
         self.assertEqual(obj_dict["__class__"], "BaseModel")
         self.assertEqual(type(obj_dict["created_at"]), str)
         self.assertEqual(type(obj_dict["updated_at"]), str)
-        convert_isoformat = datetime.datetime.fromisoformat(obj_dict["created_at"])
+        convert_isoformat = datetime.datetime.fromisoformat(
+            obj_dict["created_at"])
         self.assertEqual(type(convert_isoformat), datetime.datetime)
-        convert_isoformat = datetime.datetime.fromisoformat(obj_dict["updated_at"])
+        convert_isoformat = datetime.datetime.fromisoformat(
+            obj_dict["updated_at"])
         self.assertEqual(type(convert_isoformat), datetime.datetime)
         self.assertEqual(b1.id, obj_dict["id"])
 
-#-------------------------------Unittest Task 4-------------------------------
+    # -------------------------Unittest Task 4-------------------------------
 
     def test_instantiation_with_kwargs(self):
-        """ test creating an instance with kwargs.
+        """test creating an instance with kwargs.
 
         kwargs is a dictionary representation of another object
         """
@@ -93,15 +96,14 @@ class Test_Base_Model(unittest.TestCase):
         self.assertEqual(type(b2), BaseModel)
 
     def test_no_class_attr_obj_instance_with_kwargs(self):
-        """ check that obj created with kwargs doesn't have class attribute
-        """
+        """check that obj created with kwargs doesn't have class attribute"""
         b1 = BaseModel()
         b1_json = b1.to_dict()
         b2 = BaseModel(**b1_json)
         self.assertNotIn("__class__", b2.__dict__)
 
     def test_obj_instance_with_kwargs_attr_types_values(self):
-        """ check that obj created with kwargs has attributes:
+        """check that obj created with kwargs has attributes:
 
         id -> str
         creted_at -> datetime object
@@ -118,8 +120,8 @@ class Test_Base_Model(unittest.TestCase):
         self.assertEqual(b1.updated_at, b2.updated_at)
 
     def test_obj_instance_with_dict_attr(self):
-        """ check that obj created with kwargs has the same dictionary
-            attribute as the obj created from
+        """check that obj created with kwargs has the same dictionary
+        attribute as the obj created from
         """
         b1 = BaseModel()
         b1_json = b1.to_dict()
@@ -134,8 +136,8 @@ class Test_Base_Model(unittest.TestCase):
         self.assertEqual(b3.__dict__, b4.__dict__)
 
     def test_two_object_to_dict_return(self):
-        """ check that obj created with kwargs has the same dictionary
-            retuned by to_dict method as the obj created from
+        """check that obj created with kwargs has the same dictionary
+        retuned by to_dict method as the obj created from
         """
         b1 = BaseModel()
         b1_json = b1.to_dict()
@@ -143,8 +145,7 @@ class Test_Base_Model(unittest.TestCase):
         self.assertEqual(b2.to_dict(), b1_json)
 
     def test_two_objects_are_different(self):
-        """ check that obj created with kwargs is a new object
-        """
+        """check that obj created with kwargs is a new object"""
         b1 = BaseModel()
         b1_json = b1.to_dict()
         b2 = BaseModel(**b1_json)
