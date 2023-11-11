@@ -201,6 +201,7 @@ class HBNBCommand(cmd.Cmd):
             len(args) == 2
             and args[1] in list_cmds
             or args[1].startswith("show")
+            or args[1].startswith("destroy")
             or args[1].startswith("update")
         ):
             if args[1] == "all()":
