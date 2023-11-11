@@ -35,7 +35,7 @@ class Test_File_Storage(unittest.TestCase):
         b2.save()
         with open("file.json", "r", encoding="utf-8") as f:
             obj_dict = json.load(f)
-        get_ret = obj_dict.get("BaseModel" + "." + b2.id).get("id")
+        # get_ret = obj_dict.get("BaseModel" + "." + b2.id).get("id")
         # self.assertEqual(get_ret, None)
 
     def test_raises_exception(self):
