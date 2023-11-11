@@ -255,7 +255,7 @@ class HBNBCommand(cmd.Cmd):
                         id = check_update_command_dict.group(2)
                         try:
                             obj_dict = eval(check_update_command_dict.group(3))
-                            if type(obj_dict) is dict:
+                            if isinstance(obj_dict, dict):
                                 for k, v in obj_dict.items():
                                     update_args = (
                                         args[0] + " " + id + " "
