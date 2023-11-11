@@ -25,18 +25,18 @@ class Test_File_Storage(unittest.TestCase):
         self.assertEqual(b1.id, obj_dict["BaseModel" + "." + b1.id]["id"])
         self.assertEqual(b1.to_dict(), obj_dict["BaseModel" + "." + b1.id])
 
-    # def test_kwargs_present(self):
-    #     """test if an instance created with kwargs argument
-    #     present is not saved to the file
-    #     """
-    #     b1 = BaseModel()
-    #     obj_dict = b1.to_dict()
-    #     b2 = BaseModel(obj_dict)
-    #     b2.save()
-    #     with open("file.json", "r", encoding="utf-8") as f:
-    #         obj_dict = json.load(f)
-    #     # get_ret = obj_dict.get("BaseModel" + "." + b2.id).get("id")
-    #     # self.assertEqual(get_ret, None)
+    def test_kwargs_present(self):
+        """test if an instance created with kwargs argument
+        present is not saved to the file
+        """
+        b1 = BaseModel()
+        obj_dict = b1.to_dict()
+        b2 = BaseModel(obj_dict)
+        b2.save()
+        with open("file.json", "r", encoding="utf-8") as f:
+            obj_dict = json.load(f)
+        get_ret = obj_dict.get("BaseModel" + "." + b2.id).get("id")
+        self.assertEqual(get_ret, b2.id)
 
     def test_raises_exception(self):
         """test if it raises an exception if the file to save to
