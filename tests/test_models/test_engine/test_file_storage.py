@@ -30,6 +30,7 @@ class Test_File_Storage(unittest.TestCase):
         present is not saved to the file
         """
         b1 = BaseModel()
+        b1.save()
         obj_dict = b1.to_dict()
         b2 = BaseModel(obj_dict)
         b2.save()
@@ -56,6 +57,9 @@ class Test_File_Storage(unittest.TestCase):
             f1.__objects
         self.assertEqual(type(f1._FileStorage__file_path), str)
         self.assertEqual(type(f1._FileStorage__objects), dict)
+
+    def test_storge_instance(self):
+        self.assertEqual(type(storage), FileStorage)
 
     def test_all_dict(self):
         """test if all the instance stored in the file is returned"""
