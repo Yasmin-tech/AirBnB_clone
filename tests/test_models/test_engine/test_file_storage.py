@@ -38,14 +38,14 @@ class Test_File_Storage(unittest.TestCase):
     #     # get_ret = obj_dict.get("BaseModel" + "." + b2.id).get("id")
     #     # self.assertEqual(get_ret, None)
 
-    # def test_raises_exception(self):
-    #     """test if it raises an exception if the file to save to
-    #     doesn't exist
-    #     """
-    #     if os.path.exists("file.json"):
-    #         os.remove("file.json")
-    #     f1 = FileStorage()
-    #     f1.reload()
+    def test_raises_exception(self):
+        """test if it raises an exception if the file to save to
+        doesn't exist
+        """
+        if os.path.exists("file.json"):
+            os.remove("file.json")
+        f1 = FileStorage()
+        f1.reload()
 
     def test_file_storage_attr(self):
         """test the private attribute of the FileStorage class"""
