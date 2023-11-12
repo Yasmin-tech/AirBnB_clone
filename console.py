@@ -112,8 +112,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_all(self, line):
-        """Prints all string representation of all instances\
-        based or not on the class name. Ex: $ all BaseModel or $ all"""
+        """Prints all string representation of all instances based or\
+                not on the class name. Ex: $ all BaseModel or $ all"""
         all_objects = {}
         list_objects = []
 

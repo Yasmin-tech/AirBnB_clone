@@ -160,109 +160,44 @@ class Test_Console(unittest.TestCase):
         file = Test_Console.get_stdout("show Review " + id_value)
         self.assertTrue("[Review]" in file)
 
-    def test_destroy(self):
-        """test the destroy command"""
-        file = Test_Console.get_stdout("destroy")
+    def test_show(self):
+        """test the show command"""
+        file = Test_Console.get_stdout("show")
         expected_output = "** class name missing **\n"
         self.assertEqual(file, expected_output)
 
-        file = Test_Console.get_stdout("destroy Hotel")
+        file = Test_Console.get_stdout("show Hotel")
         expected_output = "** class doesn't exist **\n"
         self.assertEqual(file, expected_output)
 
-        file = Test_Console.get_stdout("destroy BaseModel")
+        file = Test_Console.get_stdout("show BaseModel")
         expected_output = "** instance id missing **\n"
         self.assertEqual(file, expected_output)
 
-        file = Test_Console.get_stdout("destroy BaseModel 245")
+        file = Test_Console.get_stdout("show BaseModel 245")
         expected_output = "** no instance found **\n"
         self.assertEqual(file, expected_output)
+
+        id_value = Test_Console.get_stdout("create User")
+        file = Test_Console.get_stdout("show User " + id_value)
+        self.assertTrue("[User]" in file)
 
         id_value = Test_Console.get_stdout("create BaseModel")
-        file = Test_Console.get_stdout("destroy BaseModel " + id_value)
-        show_output = Test_Console.get_stdout("show BaseModel " + id_value)
-        expected_output = "** no instance found **\n"
-        self.assertEqual(show_output, expected_output)
-
-        id_value = Test_Console.get_stdout("create User")
-        file = Test_Console.get_stdout("destroy User " + id_value)
-        show_output = Test_Console.get_stdout("show User " + id_value)
-        expected_output = "** no instance found **\n"
-        self.assertEqual(show_output, expected_output)
+        file = Test_Console.get_stdout("show BaseModel " + id_value)
+        self.assertTrue("[BaseModel]" in file)
 
         id_value = Test_Console.get_stdout("create Place")
-        file = Test_Console.get_stdout("destroy Place " + id_value)
-        show_output = Test_Console.get_stdout("show Place " + id_value)
-        expected_output = "** no instance found **\n"
-        self.assertEqual(show_output, expected_output)
+        file = Test_Console.get_stdout("show Place " + id_value)
+        self.assertTrue("[Place]" in file)
 
-        id_value = Test_Console.get_stdout("create Review")
-        file = Test_Console.get_stdout("destroy Review " + id_value)
-        show_output = Test_Console.get_stdout("show Review " + id_value)
-        expected_output = "** no instance found **\n"
-        self.assertEqual(show_output, expected_output)
+        id_value = Test_Console.get_stdout("create Amenity")
+        file = Test_Console.get_stdout("show Amenity " + id_value)
+        self.assertTrue("[Amenity]" in file)
 
         id_value = Test_Console.get_stdout("create State")
-        file = Test_Console.get_stdout("destroy State " + id_value)
-        show_output = Test_Console.get_stdout("show State " + id_value)
-        expected_output = "** no instance found **\n"
-        self.assertEqual(show_output, expected_output)
+        file = Test_Console.get_stdout("show State " + id_value)
+        self.assertTrue("[State]" in file)
 
         id_value = Test_Console.get_stdout("create Review")
-        file = Test_Console.get_stdout("destroy Review " + id_value)
-        show_output = Test_Console.get_stdout("show Review " + id_value)
-        expected_output = "** no instance found **\n"
-        self.assertEqual(show_output, expected_output)
-
-    """def test_all(self):
-        """test the all command"""
-        if os.path.exists("file.json"):
-            os.remove('file.json')
-        #HBNBCommand().onecmd("all")
-        prev_value = count = Test_Console.get_stdout("User.count()")
-        id_value = Test_Console.get_stdout("create User")
-        count = Test_Console.get_stdout("User.count()")
-        self.assertEqual(count, str(int(prev_value) + 1) + "\n")
-        Test_Console.get_stdout("destroy User " + id_value)
-        prev_count = count
-        count = Test_Console.get_stdout("User.count()")
-        self.assertEqual(prev_count, str(int(prev_value) - 1) + '\n')
-
-    def test_all_with_class(self):
-        test the argument all with a class"""
-
-    def test_update(self):
-        """test the update command of the console"""
-        id_value = Test_Console.get_stdout("create State")
-
-        file = Test_Console.get_stdout("update")
-        expected_output = "** class name missing **"
-        self.assertEqual(file, expected_output)
-
-        file = Test_Console.get_stdout("update Hotel")
-        expected_output = "** class doesn't exist **"
-        self.assertEqual(file, expected_output)
-
-        file = Test_Console.get_stdout("update State")
-        expected_output = "** instance id missing **"
-        self.assertEqual(file, expected_output)
-
-        file = Test_Console.get_stdout("update State 38")
-        expected_output = "** no instance found **"
-        self.assertEqual(file, expected_output)
-
-        file = Test_Console.get_stdout("update State " + id_value)
-        expected_output = "** attribute name missing **"
-        self.assertEqual(file, expected_output)
-
-        file = Test_Console.get_stdout("update State " + id_value + "Ho")
-        expected_output = "** value missing **"
-        self.assertEqual(file, expected_output)
-
-        command = "update State " + id_value + "name" + "kunle"
-        file = Test_Console.get_stdout(command)
-        expected_output = "** class name missing **"
-        self.assertEqual(file, expected_output)
-
-
-
+        file = Test_Console.get_stdout("show Review " + id_value)
+        self.assertTrue("[Review]" in file)
