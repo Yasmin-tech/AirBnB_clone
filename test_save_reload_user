@@ -15,6 +15,7 @@ my_user = User()
 my_user.save()
 print(my_user)
 
+
 print("-- Create a new User 2 --")
 my_user2 = User()
 my_user2.save()
