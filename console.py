@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module contain the class that is use for the console
+"""This module contains the class that is use for the console
     i.e, the entry point for the command intepreter
     """
 
