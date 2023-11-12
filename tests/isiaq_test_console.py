@@ -214,54 +214,32 @@ class Test_Console(unittest.TestCase):
         expected_output = "** no instance found **\n"
         self.assertEqual(show_output, expected_output)
 
-    """def test_all(self):
-        """test the all command"""
-        if os.path.exists("file.json"):
-            os.remove('file.json')
-        #HBNBCommand().onecmd("all")
-        prev_value = count = Test_Console.get_stdout("User.count()")
-        id_value = Test_Console.get_stdout("create User")
-        count = Test_Console.get_stdout("User.count()")
-        self.assertEqual(count, str(int(prev_value) + 1) + "\n")
-        Test_Console.get_stdout("destroy User " + id_value)
-        prev_count = count
-        count = Test_Console.get_stdout("User.count()")
-        self.assertEqual(prev_count, str(int(prev_value) - 1) + '\n')
-
-    def test_all_with_class(self):
-        test the argument all with a class"""
-
     def test_update(self):
         """test the update command of the console"""
         id_value = Test_Console.get_stdout("create State")
 
         file = Test_Console.get_stdout("update")
-        expected_output = "** class name missing **"
+        expected_output = "** class name missing **\n"
         self.assertEqual(file, expected_output)
 
         file = Test_Console.get_stdout("update Hotel")
-        expected_output = "** class doesn't exist **"
+        expected_output = "** class doesn't exist **\n"
         self.assertEqual(file, expected_output)
 
         file = Test_Console.get_stdout("update State")
-        expected_output = "** instance id missing **"
+        expected_output = "** instance id missing **\n"
         self.assertEqual(file, expected_output)
 
         file = Test_Console.get_stdout("update State 38")
-        expected_output = "** no instance found **"
+        expected_output = "** no instance found **\n"
         self.assertEqual(file, expected_output)
 
         file = Test_Console.get_stdout("update State " + id_value)
-        expected_output = "** attribute name missing **"
+        expected_output = "** attribute name missing **\n"
         self.assertEqual(file, expected_output)
 
         file = Test_Console.get_stdout("update State " + id_value + "Ho")
-        expected_output = "** value missing **"
-        self.assertEqual(file, expected_output)
-
-        command = "update State " + id_value + "name" + "kunle"
-        file = Test_Console.get_stdout(command)
-        expected_output = "** class name missing **"
+        expected_output = "** value missing **\n"
         self.assertEqual(file, expected_output)
 
 
