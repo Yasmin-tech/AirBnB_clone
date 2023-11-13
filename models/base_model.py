@@ -10,8 +10,8 @@ import datetime
 from models import storage
 
 
-class BaseModel():
-    """ a class that defines all common attributes/methods
+class BaseModel:
+    """a class that defines all common attributes/methods
         for other classes
 
     Public instance attributes:
@@ -32,8 +32,9 @@ class BaseModel():
         updates the public instance attribute
         updated_at with the current datetime
     """
+
     def __init__(self, *args, **kwargs) -> None:
-        """ BaseModel object constructor"""
+        """BaseModel object constructor"""
         if kwargs:
             for key, value in kwargs.items():
                 if key == "id":
@@ -55,8 +56,7 @@ class BaseModel():
 
     def __str__(self) -> str:
         """return string representation"""
-        return ("[{}] ({}) {}".format(self.__class__.__name__,
-                self.id, self.__dict__))
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """updates the public instance attribute `updated_at`
@@ -78,7 +78,7 @@ class BaseModel():
         %Y-%m-%dT%H:%M:%S.%f (ex: 2017-06-14T22:31:03.285259)
         """
         new_dict = self.__dict__.copy()
-        new_dict['__class__'] = self.__class__.__name__
-        new_dict['created_at'] = datetime.datetime.isoformat(self.created_at)
-        new_dict['updated_at'] = datetime.datetime.isoformat(self.updated_at)
+        new_dict["__class__"] = self.__class__.__name__
+        new_dict["created_at"] = datetime.datetime.isoformat(self.created_at)
+        new_dict["updated_at"] = datetime.datetime.isoformat(self.updated_at)
         return new_dict
