@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module contain the class that is use for the console
+"""This module contains the class that is use for the console
     i.e, the entry point for the command intepreter
     """
 
@@ -112,8 +112,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_all(self, line):
-        """Prints all string representation of all instances\
-        based or not on the class name. Ex: $ all BaseModel or $ all"""
+        """Prints all string representation of all instances based or\
+                not on the class name. Ex: $ all BaseModel or $ all"""
         all_objects = {}
         list_objects = []
 

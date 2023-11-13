@@ -9,7 +9,7 @@ Description of the project:
 
 Description of the command interpreter:
 	How to start the command interpreter:
-		Enter ./console.py on the terminal start it
+		Enter ./console.py on the terminal to start it
 
 	How to use it:
 		After starting the command interpreter input any command to create, destroy
