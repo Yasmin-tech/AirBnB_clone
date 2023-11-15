@@ -246,6 +246,76 @@ class Test_Console(unittest.TestCase):
         expected_output = "** value missing **\n"
         self.assertEqual(file, expected_output)
 
+    def test_count(self):
+        """the the count method of the console"""
+        Test_Console.get_stdout("create State")
+        file = Test_Console.get_stdout("State.count()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        Test_Console.get_stdout("create User")
+        file = Test_Console.get_stdout("User.count()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("Review.count()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("BaseModel.count()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("Place.count()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("Amenity.count()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("invalid_class.count()")
+        self.assertEqual(file, "** class doesn't exist **\n")
+
+        file = Test_Console.get_stdout("invalid_class.count")
+        self.assertEqual(file, "*** Unknown syntax: invalid_class.count\n")
+
+    def test_all(self):
+        """test the all method in the console"""
+        file = Test_Console.get_stdout("all")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("all invalid_class")
+        self.assertEqual(file, "** class doesn't exist **\n")
+
+        file = Test_Console.get_stdout("User.all")
+        self.assertEqual(file, "*** Unknown syntax: User.all\n")
+
+        file = Test_Console.get_stdout("User.all()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("BaseModel.all()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("Place.all()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("Amenity.all()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("State.all()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
+        file = Test_Console.get_stdout("Review.all()")
+        expected_output = file
+        self.assertEqual(file, expected_output)
+
 
 class Test_Console_show_with_dot_notation(unittest.TestCase):
     """A class that contains unittests for testing show from

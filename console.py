@@ -207,6 +207,9 @@ class HBNBCommand(cmd.Cmd):
             if args[1] == "all()":
                 self.do_all(args[0])
             elif args[1] == "count()":
+                if args[0] not in classes:
+                    print("** class doesn't exist **")
+                    return
                 all_objs = storage.all()
                 for key in all_objs.keys():
                     if args[0] in key:
