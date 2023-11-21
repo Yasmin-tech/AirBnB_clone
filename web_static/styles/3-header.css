@@ -1,9 +1,12 @@
 header {
-    /* position: relative; */
+    position: relative;
+    /* display: flex; */
+    align-items: center;
     background-color: white;
     height: 70px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
+    opacity: 1;
 }
 
 header div.logo {
@@ -14,4 +17,5 @@ header div.logo {
     background-repeat: no-repeat;
     height: 60px;
     width: 142px;
+    /* padding-left: 20px; */
 }
