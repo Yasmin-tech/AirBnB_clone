@@ -1,0 +1,56 @@
+.popover {
+    display: none;
+    position: absolute;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.locations,
+.amenities {
+    position: relative;
+}
+.locations .popover,
+.amenities .popover {
+    top: 100%; 
+    left: 0;
+}
+
+.popover h2 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.popover ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.popover li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.popover li:hover {
+    background-color: #DDDDDD;
+}
+
+.popover h2 {
+    font-size: 16px;
+}
+.filters:hover .popover {
+    display: block;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover {
+    display: block;
+}
+

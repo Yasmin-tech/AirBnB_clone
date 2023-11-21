@@ -1,0 +1,12 @@
+header {
+    background-color: white; height: 70px; width: 100%; border-bottom: 1px #CCCCCC solid;
+    align-items: center; display: flex;
+    
+}
+div.logo {
+    width: 120px;
+    height: 50px;
+    background-image: url("../images/logo.png");
+    background-size: cover;
+    margin-left: 20px;
+}
